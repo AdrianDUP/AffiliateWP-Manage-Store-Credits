@@ -10,3 +10,45 @@
  *
  * Version: 0.0.0
  */
+
+if ( ! defined('ABSPATH')) {
+	exit('Cheaters Detected!');
+}
+
+if (!class_exists('AWP_Manage_Store_Credits')) {
+	class AWP_Manage_Store_Credits {
+
+		/**
+		 * @var AWP_Manage_Store_Credits $instance Instance of the plugin
+		 * @since 1.0.0
+		 */
+		private static $instance;
+
+		/**
+		 * Main Class initialiser
+		 *
+		 * @since 1.0.0
+		 */
+		public static function instance() {
+			if (!isset(self::$instance) && !(self::$instance instanceof AWP_Manage_Store_Credits)) {
+				self::$instance = new AWP_Manage_Store_Credits;
+			}
+
+			self::$instance->set_constants();
+
+			return self::$instance;
+		}
+
+		/**
+		 * Setup all the needed constant variables for the plugin
+		 *
+		 * @access private
+		 * @since 1.0.0
+		 */
+		private function set_constants() {
+			if ( ! defined('AWP_MSC_PLUGIN_LOCATION') ) {
+				define('AWP_MSC_PLUGIN_LOCATION', dirname(__FILE__));
+			}
+		}
+	}
+}
